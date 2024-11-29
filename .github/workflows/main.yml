@@ -12,5 +12,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Run code
-        run: python3 src/main.py
+      - name: Build and run Docker image
+        run: |
+          docker build -t app .
+          docker run app

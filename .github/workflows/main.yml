@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Build and run Docker image
-        run: |
-          docker build -t app .
-          docker run app
+      - name: Build Docker image
+        run: docker build -t app .
+      - name: Run Docker image
+        run: docker run app

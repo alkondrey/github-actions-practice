@@ -22,7 +22,7 @@ env:
   IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/github-aptions-practice:latest
 
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -32,6 +32,10 @@ jobs:
         id: docker-login
         run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
+  build:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
       - name: Build Docker image
         run: docker build -t ${{ env.IMAGE_NAME }} .
 
@@ -43,13 +47,6 @@ jobs:
     needs: build
     if: github.ref == 'refs/heads/main'
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Log in to GitHub Docker registry
-        id: docker-login
-        run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
       - name: Pull Docker image
         run: docker pull ${{ env.IMAGE_NAME }}
 

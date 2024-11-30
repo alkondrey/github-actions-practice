@@ -8,9 +8,18 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      stand:
+        required: true
+        type: choice
+        options:
+          - test
+          - preprod
+          - prod
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/github-aptions-practice:latest
+  IMAGE_NAME: ghcr.io/${{ github }}/github-aptions-practice:latest
 
 jobs:
   run-code:

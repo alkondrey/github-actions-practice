@@ -1,16 +1,12 @@
 name: Deploy
-run-name: "'${{ github.actor }}' is deploying to ${{ inputs.stand }}"
+run-name: "Deploy to '${{ inputs.stand }}'"
 
 on:
   workflow_dispatch:
     inputs:
       stand:
         required: true
-        type: choice
-        options:
-          - test
-          - preprod
-          - prod
+        type: environment
 
 env:
   IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/github-aptions-practice:latest

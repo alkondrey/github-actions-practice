@@ -4,10 +4,9 @@ run-name: "Deploy to '${{ inputs.stand }}'"
 on:
   workflow_dispatch:
     inputs:
-      stand:
+      environment:
         required: true
         type: environment
-        default: "test"
 
 env:
   IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/github-aptions-practice:latest

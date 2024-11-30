@@ -1,0 +1,41 @@
+name: Run Code
+run-name: ${{ github.actor }} is testing out GitHub Actions
+
+on:
+  release:
+    types:
+      - released
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      stand:
+        required: true
+        type: choice
+        options:
+          - test
+          - preprod
+          - prod
+
+env:
+  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/github-aptions-practice:latest
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup
+        uses: ./.github/actions/setup
+        with:
+          ghcr-pat: ${{ secrets.GHCR_PAT }}
+
+      - name: Pull Docker image
+        run: docker pull ${{ env.IMAGE_NAME }}
+
+      - name: Run Docker container
+        run: docker run ${{ env.IMAGE_NAME }}

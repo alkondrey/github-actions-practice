@@ -1,5 +1,5 @@
 name: Deploy
-run-name: ${{ github.actor }} is testing out GitHub Actions
+run-name: \'${{ github.actor }}\' is deploying to ${{ inputs.stand }}
 
 on:
   workflow_dispatch:

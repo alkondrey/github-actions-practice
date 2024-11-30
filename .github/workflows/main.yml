@@ -15,7 +15,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Build Docker image
-        run: docker build -t app .
+        run: docker build -t ghcr.io/${{ github.repository_owner }}/github-aptions-practice:latest
+
       - name: Run Docker image
-        run: docker run app
+        run: docker run ghcr.io/${{ github.repository_owner }}/github-aptions-practice:latest
+
+      - name: Push the Docker image
+        run: docker push ghcr.io/${{ github.repository_owner }}/github-aptions-practice:latest

@@ -1,6 +1,11 @@
 name: "Setup"
 description: "Setup job"
 
+inputs:
+  ghcr_pat:
+    required: true
+    description: "token"
+
 runs:
   using: "composite"
   steps:

@@ -30,6 +30,8 @@ jobs:
 
       - name: Setup
         uses: ./.github/actions/setup
+        with:
+          ghcr_pat: ${{ secrets.GHCR_PAT }}
 
       - name: Build Docker image
         run: docker build -t ${{ env.IMAGE_NAME }} .
@@ -47,6 +49,8 @@ jobs:
 
       - name: Setup
         uses: ./.github/actions/setup
+        with:
+          ghcr_pat: ${{ secrets.GHCR_PAT }}
 
       - name: Pull Docker image
         run: docker pull ${{ env.IMAGE_NAME }}

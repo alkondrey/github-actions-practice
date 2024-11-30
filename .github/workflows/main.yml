@@ -32,12 +32,21 @@ jobs:
         id: docker-login
         run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
+      - name: PWD
+        run: pwd
+
+      - name: LS
+        run: ls
+
   build:
     runs-on: ubuntu-latest
     needs: setup
     steps:
-      - name: Print current working directory
+      - name: PWD
         run: pwd
+
+      - name: LS
+        run: ls
 
       - name: Build Docker image
         run: docker build -t ${{ env.IMAGE_NAME }} .

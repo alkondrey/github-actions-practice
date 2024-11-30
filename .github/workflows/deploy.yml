@@ -1,13 +1,7 @@
-name: Run Code
+name: Deploy
 run-name: ${{ github.actor }} is testing out GitHub Actions
 
 on:
-  release:
-    types:
-      - released
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       stand:

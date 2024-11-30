@@ -42,3 +42,5 @@ jobs:
 
       - name: Attestation
         uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: 'src'

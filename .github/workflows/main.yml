@@ -41,12 +41,4 @@ jobs:
         run: docker push ${{ env.IMAGE_NAME }}
 
       - name: Attestation
-        run: |
-          # Attestation script will be added here
-          echo "Attestation report generated"
-
-      - name: Upload Attestation Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: attestation-report
-          path: attestation-report.txt
+        uses: actions/attest-build-provenance@v1

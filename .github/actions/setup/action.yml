@@ -2,7 +2,7 @@ name: "Setup"
 description: "Setup job"
 
 inputs:
-  ghcr_pat:
+  ghcr-pat:
     required: true
     description: "token"
 
@@ -10,5 +10,5 @@ runs:
   using: "composite"
   steps:
     - name: Log in to GitHub Docker registry
-      run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      run: echo "${{ inputs.ghcr-pat }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       shell: sh

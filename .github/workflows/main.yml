@@ -19,7 +19,7 @@ on:
           - prod
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github }}/github-aptions-practice:latest
+  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/github-aptions-practice:latest
 
 jobs:
   run-code:

@@ -36,6 +36,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup
     steps:
+      - name: Print current working directory
+        run: pwd
+
       - name: Build Docker image
         run: docker build -t ${{ env.IMAGE_NAME }} .
 

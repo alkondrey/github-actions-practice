@@ -24,16 +24,13 @@ env:
 jobs:
   setup:
     runs-on: ubuntu-latest
-    outputs:
-      docker-login: ${{ steps.docker-login.outputs.result }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Log in to GitHub Docker registry
         id: docker-login
-        run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }}
+        run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
   build:
     runs-on: ubuntu-latest
